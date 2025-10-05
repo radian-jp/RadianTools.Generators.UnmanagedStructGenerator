@@ -8,7 +8,7 @@
     <IsRoslynComponent>true</IsRoslynComponent>
     <AnalyzerLanguage>cs</AnalyzerLanguage>
     <EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
-    <Platforms>AnyCPU;x64</Platforms>
+    <Platforms>AnyCPU</Platforms>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -21,6 +21,16 @@
 
   <PropertyGroup>
     <PathMap>$(MSBuildProjectDirectory)=.</PathMap>
+    <Version>0.0.1</Version>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <Company>RadianTools</Company>
+    <PackageTags>C#;RadianTools;SourceGenerator;FixedBuffer;Unmanaged;NativeHandle;Struct</PackageTags>
+    <Authors>radian</Authors>
+    <Title>$(AssemblyName)</Title>
+    <Description>C# source generators for unmanaged structs: NativeHandle wrappers and fixed-size buffers.</Description>
+    <Copyright>Copyright (c) 2025 radian</Copyright>
+    <PackageProjectUrl>https://github.com/radian-jp/RadianTools.Generators.UnmanagedStructGenerator</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/radian-jp/RadianTools.Generators.UnmanagedStructGenerator</RepositoryUrl>
   </PropertyGroup>
   
   <ItemGroup>
