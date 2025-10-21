@@ -7,6 +7,7 @@ namespace RadianTools.Generators.UnmanagedStructGenerator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
+using System.Diagnostics;
 using System.Linq;
 
 [Generator(LanguageNames.CSharp)]
@@ -55,15 +56,20 @@ public sealed class NativeHandleIncrementalGenerator : IIncrementalGenerator
                 var ns = symbol.ContainingNamespace.ToDisplayString();
                 var name = symbol.Name;
 
-                // BaseTypeName を取得（引数なしなら IntPtr）
+                // BaseType を取得（引数なしなら IntPtr）
                 string baseTypeName = "global::System.IntPtr";
-                if (attr.ConstructorArguments.Length == 1 &&
-                    attr.ConstructorArguments[0].Value is string s &&
-                    !string.IsNullOrWhiteSpace(s))
+                if (attr.ConstructorArguments.Length == 1)
                 {
-                    baseTypeName = s;
+                    var attrArg = attr.ConstructorArguments[0];
+                    if( attrArg is TypedConstant typedConstant )
+                    {
+                        baseTypeName = typedConstant.Value!.ToString();
+                    }
+                    else if (attrArg.Value is INamedTypeSymbol typeSymbol)
+                    {
+                        baseTypeName = typeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat);
+                    }
                 }
-
                 bool isPointer = baseTypeName.Contains("*");
 
                 spc.AddSource($"{name}_NativeHandle.g.cs",

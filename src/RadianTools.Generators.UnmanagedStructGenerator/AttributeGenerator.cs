@@ -50,21 +50,21 @@ namespace RadianTools.Generators.UnmanagedStructGenerator
     [System.AttributeUsage(System.AttributeTargets.Struct, AllowMultiple = false)]
     internal sealed class NativeHandleAttribute : System.Attribute
     {
-        public string BaseTypeName { get; }
+        public System.Type BaseType { get; }
 
         /// <summary>デフォルトは IntPtr ベース</summary>
         public NativeHandleAttribute()
         {
-            BaseTypeName = ""global::System.IntPtr"";
+            BaseType = typeof(System.IntPtr);
         }
 
         /// <summary>
-        /// ベース型の完全修飾名を文字列で指定してください。
-        /// 例: ""global::System.IntPtr"" または ""global::YourNamespace.ITEMIDLIST*""
+        /// ベース型を Type として指定してください。
+        /// 例: typeof(ITEMIDLIST*)
         /// </summary>
-        public NativeHandleAttribute(string baseTypeName)
+        public NativeHandleAttribute(System.Type baseType)
         {
-            BaseTypeName = baseTypeName;
+            BaseType = baseType;
         }
     }
 }");
