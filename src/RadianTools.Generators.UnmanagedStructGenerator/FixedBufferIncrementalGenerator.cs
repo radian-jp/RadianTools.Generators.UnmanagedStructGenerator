@@ -132,6 +132,17 @@ namespace {ns}
     {{
         public unsafe fixed char _value[{len}];
 
+        public Span<char> AsSpan()
+        {{
+            unsafe
+            {{
+                fixed(char* p = _value)
+                {{
+                    return new Span<char>(p, {len});
+                }}
+            }}
+        }}
+
         public override string ToString()
         {{
             unsafe
@@ -156,6 +167,14 @@ namespace {ns}
     partial struct {name}
     {{
         public unsafe fixed {elemType} _value[{len}];
+
+        public Span<{elemType}> AsSpan()
+        {{
+            fixed({elemType}* p = _value)
+            {{
+                return new Span<{elemType}>(p, {len});
+            }}
+        }}
 
         public override string ToString()
         {{
