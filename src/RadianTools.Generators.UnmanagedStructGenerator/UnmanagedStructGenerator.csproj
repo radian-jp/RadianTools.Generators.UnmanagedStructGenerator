@@ -32,13 +32,10 @@
     <PackageProjectUrl>https://github.com/radian-jp/RadianTools.Generators.UnmanagedStructGenerator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/radian-jp/RadianTools.Generators.UnmanagedStructGenerator</RepositoryUrl>
   </PropertyGroup>
-  
-  <ItemGroup>
-    <Compile Remove="Attributes.cs" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis" Version="4.14.0" />
   </ItemGroup>
 
 </Project>
+
